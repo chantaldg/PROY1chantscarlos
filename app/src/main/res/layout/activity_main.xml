@@ -3,5 +3,152 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F4A7B9"/>
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"
+        android:enabled="false"
+        android:text="OBTENER PUESTOS"
+        app:layout_constraintBottom_toTopOf="@+id/resultTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/score3SeekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="164dp"
+        android:max="10"
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/score3TextView"
+        app:layout_constraintTop_toBottomOf="@+id/score2SeekBar" />
+
+    <TextView
+        android:id="@+id/studentNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOMBRE ESTUDIANTE"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/judgeNameEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/judgeNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="137dp"
+        android:layout_marginEnd="25dp"
+        android:text="Nombre del Juez:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/judgeNameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/score1TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="26dp"
+        android:text="Puntuación 1 (Juez 1)"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/score1SeekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/judgeNameTextView" />
+
+    <SeekBar
+        android:id="@+id/score1SeekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="164dp"
+        android:max="10"
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/score1TextView"
+        app:layout_constraintTop_toTopOf="@+id/score1TextView" />
+
+    <TextView
+        android:id="@+id/score2TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="26dp"
+        android:text="Puntuación 2 (Juez 1)"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/score2SeekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score1TextView" />
+
+    <SeekBar
+        android:id="@+id/score2SeekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="13dp"
+        android:max="10"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="@+id/score2TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/score2TextView" />
+
+    <TextView
+        android:id="@+id/score3TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="54dp"
+        android:text="Puntuación 3 (Juez 1)"
+        app:layout_constraintEnd_toStartOf="@+id/score3SeekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score2TextView" />
+
+    <EditText
+        android:id="@+id/judgeNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="122dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="121dp"
+        android:ems="10"
+        android:hint="Nombre del juez"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/score2TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/judgeNameTextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="PRÓXIMO JUEZ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score3TextView" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="80dp"
+        android:text="Resultados:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
