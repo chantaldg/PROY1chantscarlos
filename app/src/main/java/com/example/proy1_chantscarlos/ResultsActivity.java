@@ -2,75 +2,64 @@ package com.example.proy1_chantscarlos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.TextView;
 
-import java.util.Arrays;
 public class ResultsActivity extends AppCompatActivity {
 
-    private TextView resultadoTextView;
+    private TextView firstGradeTextView, secondGradeTextView, thirdGradeTextView;
+    private TextView firstStudentNameTextView, secondStudentNameTextView, thirdStudentNameTextView;
     private TextView tieTextView;
-
-    private String[] studentNames = {"CHANTAL DE GRACIA", "CARLOS CAMPBELL", "DIEGO BURGOS", "LUIS CARREYÓ", "MAIKEL DOMÍNGUEZ", "ROMAS LESCURE", "EIVAR MORALES"};
-    private float[] averageScores = new float[7];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        resultadoTextView = findViewById(R.id.resultadoTextView);
+        // Get the data passed from the MainActivity
+        Intent intent = getIntent();
+        int firstGrade = intent.getIntExtra("firstGrade", 0);
+        int secondGrade = intent.getIntExtra("secondGrade", 0);
+        int thirdGrade = intent.getIntExtra("thirdGrade", 0);
+        String firstStudentName = intent.getStringExtra("firstStudentName");
+        String secondStudentName = intent.getStringExtra("secondStudentName");
+        String thirdStudentName = intent.getStringExtra("thirdStudentName");
+
+        // Find the TextViews in the layout
+        firstGradeTextView = findViewById(R.id.firstGradeTextView);
+        secondGradeTextView = findViewById(R.id.secondGradeTextView);
+        thirdGradeTextView = findViewById(R.id.thirdGradeTextView);
+        firstStudentNameTextView = findViewById(R.id.firstStudentNameTextView);
+        secondStudentNameTextView = findViewById(R.id.secondStudentNameTextView);
+        thirdStudentNameTextView = findViewById(R.id.thirdStudentNameTextView);
         tieTextView = findViewById(R.id.tieTextView);
 
-        // Get average scores and student names from MainActivity
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            averageScores = extras.getFloatArray("averageScores");
-            studentNames = extras.getStringArray("studentNames");
-        }
+        // Set the text of the TextViews to display the data passed from MainActivity
+        firstGradeTextView.setText(String.valueOf(firstGrade));
+        secondGradeTextView.setText(String.valueOf(secondGrade));
+        thirdGradeTextView.setText(String.valueOf(thirdGrade));
+        firstStudentNameTextView.setText(firstStudentName);
+        secondStudentNameTextView.setText(secondStudentName);
+        thirdStudentNameTextView.setText(thirdStudentName);
 
-        // Sort averageScores in descending order
-        Arrays.sort(averageScores);
-        float[] sortedAverageScores = new float[7];
-        for (int i = 0; i < 7; i++) {
-            sortedAverageScores[i] = averageScores[6 - i];
-        }
-
-        // Display top three scores with corresponding student names
-        String[] topThree = new String[3];
-        float topScore = sortedAverageScores[0];
-        for (int i = 0; i < 3; i++) {
-            int index = -1;
-            for (int j = 0; j < 7; j++) {
-                if (averageScores[j] == sortedAverageScores[i]) {
-                    index = j;
-                    break;
-                }
+        // Check for ties
+        if (firstGrade == secondGrade || secondGrade == thirdGrade) {
+            String tiedStudents = "";
+            if (firstGrade == secondGrade) {
+                tiedStudents = firstStudentName + " and " + secondStudentName;
+            } else if (secondGrade == thirdGrade) {
+                tiedStudents = secondStudentName + " and " + thirdStudentName;
             }
-            topThree[i] = studentNames[index] + ": " + String.format("%.2f", sortedAverageScores[i]);
-            if (sortedAverageScores[i] != topScore) {
-                break;
+            String tiedPositions = "";
+            if (firstGrade == secondGrade && secondGrade == thirdGrade) {
+                tiedPositions = "1st, 2nd, and 3rd";
+            } else if (firstGrade == secondGrade) {
+                tiedPositions = "1st and 2nd";
+            } else if (secondGrade == thirdGrade) {
+                tiedPositions = "2nd and 3rd";
             }
+            tieTextView.setText(tiedStudents + " are tied for " + tiedPositions + " place.");
         }
-        resultadoTextView.setText(String.join("\n", topThree));
-
-        // Check for ties in top three
-        String tieMsg = "";
-        for (int i = 0; i < 3; i++) {
-            for (int j = i + 1; j < 3; j++) {
-                if (sortedAverageScores[i] == sortedAverageScores[j]) {
-                    // There is a tie
-                    String tieNames = studentNames[Arrays.binarySearch(averageScores, sortedAverageScores[i])];
-                    for (int k = j; k < 3; k++) {
-                        if (sortedAverageScores[i] == sortedAverageScores[k]) {
-                            tieNames += ", " + studentNames[Arrays.binarySearch(averageScores, sortedAverageScores[k])];
-                        }
-                    }
-                    tieMsg = "Empate entre " + tieNames + " en el puesto " + (i + 1) + ".";
-                }
-            }
-        }
-        tieTextView.setText(tieMsg);
     }
 }

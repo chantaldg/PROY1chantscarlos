@@ -1,164 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFD9E2"
+    android:padding="16dp">
 
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="65dp"
-        android:enabled="false"
-        android:text="OBTENER PUESTOS"
-        app:layout_constraintBottom_toTopOf="@+id/resultTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nextButton" />
+    <TableRow>
 
-    <TextView
-        android:id="@+id/studentNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="69dp"
-        android:layout_marginBottom="13dp"
-        android:text="NOMBRE ESTUDIANTE"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/judgeNameEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/studentNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:text="CALIFICACIONES"
+            android:textColor="#F54291"
+            android:textSize="35sp"
+            android:textStyle="bold|italic" />
 
-    <TextView
-        android:id="@+id/judgeNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="15dp"
-        android:text="Nombre del Juez:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/judgeNameEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentNameTextView" />
+    </TableRow>
 
-    <TextView
-        android:id="@+id/score1TextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="17dp"
-        android:text="Puntuación 1 (Juez 1)"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/score2TextView"
-        app:layout_constraintEnd_toStartOf="@+id/score1EditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/judgeNameEditText" />
+    <TableRow>
 
-    <TextView
-        android:id="@+id/score2TextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="15dp"
-        android:text="Puntuación 2 (Juez 1)"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/score3EditText"
-        app:layout_constraintEnd_toStartOf="@+id/score2EditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score1TextView" />
+        <TextView
+            android:id="@+id/judgeNameTextView"
+            android:layout_width="157dp"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:text="JUEZ:"
+            android:textColor="#F54291"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/score3TextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="67dp"
-        android:layout_marginBottom="26dp"
-        android:text="Puntuación 3 (Juez 1)"
-        app:layout_constraintBottom_toTopOf="@+id/nextButton"
-        app:layout_constraintEnd_toStartOf="@+id/score3EditText"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/judgeNameEditText"
+            android:layout_width="157dp"
+            android:layout_height="wrap_content"
+            android:background="#FFF2F5"
+            android:ems="10"
+            android:hint="Nombre del juez"
+            android:inputType="textPersonName"
+            android:textColor="#F54291" />
 
-    <EditText
-        android:id="@+id/judgeNameEditText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="23dp"
-        android:ems="10"
-        android:hint="Nombre del juez"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/score1TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/judgeNameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/studentNameTextView" />
+    </TableRow>
 
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="125dp"
-        android:text="PRÓXIMO JUEZ"
-        app:layout_constraintBottom_toTopOf="@+id/submitButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score3EditText" />
+    <TableRow>
 
-    <TextView
-        android:id="@+id/resultTextView"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:text="Resultados:"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/submitButton" />
+        <TextView
+            android:id="@+id/score1TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:text="CONTENIDO"
+            android:textColor="#F54291"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/score1EditText"
-        android:layout_width="157dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/score2TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/score1TextView"
-        app:layout_constraintTop_toBottomOf="@+id/judgeNameTextView" />
+        <EditText
+            android:id="@+id/score1EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFF2F5"
+            android:ems="10"
+            android:hint="(1 - 10)"
+            android:textColor="#F54291" />
 
-    <EditText
-        android:id="@+id/score3EditText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginBottom="36dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="puntuacion"
-        app:layout_constraintBottom_toTopOf="@+id/nextButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/score3TextView"
-        app:layout_constraintTop_toBottomOf="@+id/score2TextView" />
+    </TableRow>
 
-    <EditText
-        android:id="@+id/score2EditText"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginBottom="52dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/score3EditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/score2TextView"
-        app:layout_constraintTop_toTopOf="@+id/score1TextView" />
+    <TableRow>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/score2TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:text="PROYECCIÓN"
+            android:textColor="#F54291"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/score2EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFF2F5"
+            android:ems="10"
+            android:hint="(1 - 10)"
+            android:textColor="#F54291" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/score3TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:text="LENGUAJE"
+            android:textColor="#F54291"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/score3EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFF2F5"
+            android:ems="10"
+            android:hint="(1 - 10)"
+            android:textColor="#F54291" />
+
+    </TableRow>
+
+    <TableRow android:gravity="center">
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRÓXIMO JUEZ" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="OBTENER PUESTOS" />
+    </TableRow>
+
+</TableLayout>

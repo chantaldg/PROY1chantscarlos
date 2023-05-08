@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         judgeNameEditText = findViewById(R.id.judgeNameEditText);
         nextButton = findViewById(R.id.nextButton);
         submitButton = findViewById(R.id.submitButton);
-        resultTextView = findViewById(R.id.resultTextView);
 
         // Initialize UI
         studentNameTextView.setText(studentNames[0]);
@@ -70,26 +69,16 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                /* Check if current judge has already scored the current student
-                for (int i = 0; i < 3; i++) {
-                    if (scoresEntered[currentStudentIndex][i] && judgeNames[i].equals(judgeName)) {
-                        Toast.makeText(MainActivity.this, "Este juez ya ha calificado a este estudiante", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-*/
                 // Update scores for current student and judge
-                scores[currentStudentIndex][currentJudgeIndex * 3] = score1;
-                scores[currentStudentIndex][currentJudgeIndex * 3 + 1] = score2;
-                scores[currentStudentIndex][currentJudgeIndex * 3 + 2] = score3;
-                scoresEntered[currentStudentIndex][currentJudgeIndex] = true;
+                numScoresPerJudgePerStudent[currentStudentIndex][currentJudgeIndex]++;
+                scores[currentStudentIndex][currentJudgeIndex] += score1 + score2 + score3;
 
                 // Move on to next judge or student
                 if (currentJudgeIndex == 2) {
                     // Move on to next student if all scores have been entered for current student
                     boolean allScoresEntered = true;
                     for (int i = 0; i < 3; i++) {
-                        if (!scoresEntered[currentStudentIndex][i]) {
+                        if (numScoresPerJudgePerStudent[currentStudentIndex][i] == 0) {
                             allScoresEntered = false;
                             break;
                         }
@@ -117,29 +106,56 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Calculate results
-                float[] averageScores = new float[7];
-                for (int i = 0; i < 7; i++) {
-                    float totalScore = 0;
-                    int scoresEntered = 0;
-                    for (int j = 0; j < 9; j++) {
-                        if (scores[i][j] != 0) {
-                            totalScore += scores[i][j];
-                            scoresEntered++;
+                int[] totalScores = new int[scores.length];
+                for (int i = 0; i < scores.length; i++) {
+                    int sum = 0;
+                    for (int j = 0; j < scores[i].length; j++) {
+                        sum += scores[i][j];
+                    }
+                    totalScores[i] = sum;
+                }
+// Initialize variables to store the top three scores and their corresponding student names
+                int[] topThreeScores = new int[3];
+                String[] topThreeNames = new String[3];
+
+// Find the top three scores and their corresponding student names using selection sort
+                for (int i = 0; i < 3; i++) {
+                    int maxIndex = i;
+                    for (int j = i + 1; j < totalScores.length; j++) {
+                        if (totalScores[j] > totalScores[maxIndex]) {
+                            maxIndex = j;
                         }
                     }
-                    if (scoresEntered != 0) {
-                        averageScores[i] = totalScore / scoresEntered;
-                    }
+                    // Swap the maximum score with the score at the current index
+                    int tempScore = totalScores[i];
+                    totalScores[i] = totalScores[maxIndex];
+                    totalScores[maxIndex] = tempScore;
+                    // Swap the name of the student with the maximum score with the name of the student at the current index
+                    String tempName = studentNames[i];
+                    studentNames[i] = studentNames[maxIndex];
+                    studentNames[maxIndex] = tempName;
+                    // Store the top three scores and their corresponding student names
+                    topThreeScores[i] = totalScores[i];
+                    topThreeNames[i] = studentNames[i];
                 }
-                // Disable submit button
-                submitButton.setEnabled(false);
-                // Start ResultsActivity and pass averageScores
+
+// Create an intent to start the next activity and pass the top three grades and their names
                 Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
-                intent.putExtra("averageScores", averageScores);
+                intent.putExtra("firstGrade", topThreeScores[0]);
+                intent.putExtra("secondGrade", topThreeScores[1]);
+                intent.putExtra("thirdGrade", topThreeScores[2]);
+                intent.putExtra("firstStudentName", topThreeNames[0]);
+                intent.putExtra("secondStudentName", topThreeNames[1]);
+                intent.putExtra("thirdStudentName", topThreeNames[2]);
+
+// Start the next activity
                 startActivity(intent);
+
+
             }
         });}}
