@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import java.util.Arrays;
 
@@ -123,67 +124,22 @@ public class MainActivity extends AppCompatActivity {
                 float[] averageScores = new float[7];
                 for (int i = 0; i < 7; i++) {
                     float totalScore = 0;
-                    int scoresEnteredCount = 0;
+                    int scoresEntered = 0;
                     for (int j = 0; j < 9; j++) {
-                        if (scoresEntered[i][j / 3]) {
+                        if (scores[i][j] != 0) {
                             totalScore += scores[i][j];
-                            scoresEnteredCount++;
+                            scoresEntered++;
                         }
                     }
-                    if (scoresEnteredCount > 0) {
-                        averageScores[i] = totalScore / scoresEnteredCount;
+                    if (scoresEntered != 0) {
+                        averageScores[i] = totalScore / scoresEntered;
                     }
                 }
-
-                // Determine top three students based on average scores
-                String[] topThree = new String[3];
-                float[] sortedScores = averageScores.clone();
-                Arrays.sort(sortedScores);
-                int topThreeCount = 0;
-                for (int i = 0; i < 7; i++) {
-                    if (averageScores[i] > 0) {
-                        if (topThreeCount < 3) {
-                            topThree[topThreeCount++] = studentNames[i];
-                        } else {
-                            for (int j = 0; j < 3; j++) {
-                                if (averageScores[i] > sortedScores[6 - j]) {
-                                    for (int k = 2; k > j; k--) {
-                                        topThree[k] = topThree[k - 1];
-                                    }
-                                    topThree[j] = studentNames[i];
-                                    sortedScores[6 - j] = averageScores[i];
-                                    break;
-                                }
-                                if (averageScores[i] == sortedScores[6 - j]) {
-                                    // There is a tie
-                                    String tieMsg = "Empate entre ";
-                                    int tieCount = 1;
-                                    for (int k = j; k < 3; k++) {
-                                        if (averageScores[i] == sortedScores[6 - k]) {
-                                            if (tieCount > 1) {
-                                                tieMsg += " y ";
-                                            }
-                                            tieMsg += topThree[k];
-                                            tieCount++;
-                                        }
-                                    }
-                                    tieMsg += " en el puesto " + (j + 1) + ".";
-                                    resultTextView.setText(tieMsg);
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Display results for top three students
-                String result = "Resultados:\n\n";
-                for (int i = 0; i < topThreeCount; i++) {
-                    result += topThree[i] + ": " + String.format("%.2f", sortedScores[6 - i]) + "\n";
-                }
-                resultTextView.setText(result);
-
                 // Disable submit button
                 submitButton.setEnabled(false);
+                // Start ResultsActivity and pass averageScores
+                Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
+                intent.putExtra("averageScores", averageScores);
+                startActivity(intent);
             }
         });}}
