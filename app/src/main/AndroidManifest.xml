@@ -20,8 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ResultsActivity"
             android:label="RESULTADOS" />
+
+        <activity android:name=".Login"
+            android:label="Login"
+            android:exported="true" />
 
     </application>
 
