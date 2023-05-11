@@ -101,9 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < scores.length; i++) {
                     int sum = 0;
                     for (int j = 0; j < scores[i].length; j++) {
-                        for (int k = 0; k < scores[i][j].length; k++) {
-                            sum += scores[i][j][k];
-                        }
+                        sum += scores[i][j];
                     }
                     totalScores[i] = sum;
                 }
