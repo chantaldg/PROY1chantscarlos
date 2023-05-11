@@ -12,7 +12,7 @@
         android:theme="@style/Theme.PROY1chantscarlos"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,12 +21,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".MainActivity"
+            android:label="EVALUACIONES" />
+
         <activity android:name=".ResultsActivity"
             android:label="RESULTADOS" />
 
-        <activity android:name=".Login"
-            android:label="Login"
-            android:exported="true" />
 
     </application>
 

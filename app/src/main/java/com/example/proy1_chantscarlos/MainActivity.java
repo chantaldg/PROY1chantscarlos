@@ -2,29 +2,27 @@ package com.example.proy1_chantscarlos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
 
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView studentNameTextView, score1TextView, score2TextView, score3TextView, resultTextView;
-    private EditText judgeNameEditText, score1EditText, score2EditText, score3EditText;
-    private Button nextButton, submitButton;
+    private EditText score1EditText, score2EditText, score3EditText;
+    private Button nextButton, submitButton, logoutButton;
     private int currentStudentIndex = 0;
-    private int currentJudgeIndex = 0;
     private String[] studentNames = {"CHANTAL DE GRACIA", "CARLOS CAMPBELL", "DIEGO BURGOS", "LUIS CARREYÓ", "MAIKEL DOMÍNGUEZ", "ROMAS LESCURE", "EIVAR MORALES"};
-    private String[] judgeNames = {"juez1", "juez2", "juez3"};
-
-    private int[][] numScoresPerJudgePerStudent = new int[7][3];
-    private int[][] scores = new int[7][9];
-    private boolean[][] scoresEntered = new boolean[7][3];
+    private String judgeName;
+    private int[][] numScoresPerStudent = new int[7][1];
+    private int[][] scores = new int[7][3];
+    private boolean[][] scoresEntered = new boolean[7][1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,26 +36,19 @@ public class MainActivity extends AppCompatActivity {
         score2EditText = findViewById(R.id.score2EditText);
         score3TextView = findViewById(R.id.score3TextView);
         score3EditText = findViewById(R.id.score3EditText);
-        judgeNameEditText = findViewById(R.id.judgeNameEditText);
         nextButton = findViewById(R.id.nextButton);
+        logoutButton = findViewById(R.id.logoutButton);
         submitButton = findViewById(R.id.submitButton);
+
+        Intent intent = getIntent();
+        judgeName = intent.getStringExtra("judgeName");
 
         // Initialize UI
         studentNameTextView.setText(studentNames[0]);
-        score1TextView.setText("Puntuación 1");
-        score2TextView.setText("Puntuación 2");
-        score3TextView.setText("Puntuación 3");
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Validate judge name
-                String judgeName = judgeNameEditText.getText().toString();
-                if (!Arrays.asList(judgeNames).contains(judgeName)) {
-                    Toast.makeText(MainActivity.this, "Nombre del juez inválido", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 // Get scores entered for current student
                 int score1 = Integer.parseInt(score1EditText.getText().toString());
                 int score2 = Integer.parseInt(score2EditText.getText().toString());
@@ -70,40 +61,35 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // Update scores for current student and judge
-                numScoresPerJudgePerStudent[currentStudentIndex][currentJudgeIndex]++;
-                scores[currentStudentIndex][currentJudgeIndex] += score1 + score2 + score3;
+                numScoresPerStudent[currentStudentIndex][0]++;
+                scores[currentStudentIndex][0] += score1 + score2 + score3;
+                scoresEntered[currentStudentIndex][0] = true;
 
-                // Move on to next judge or student
-                if (currentJudgeIndex == 2) {
-                    // Move on to next student if all scores have been entered for current student
-                    boolean allScoresEntered = true;
-                    for (int i = 0; i < 3; i++) {
-                        if (numScoresPerJudgePerStudent[currentStudentIndex][i] == 0) {
-                            allScoresEntered = false;
-                            break;
-                        }
-                    }
-                    if (allScoresEntered) {
-                        currentStudentIndex++;
-                        currentJudgeIndex = 0;
-                    }
-                } else {
-                    // Move on to next judge
-                    currentJudgeIndex++;
-                }
+                // Move on to next student
+                currentStudentIndex++;
 
-                // Check if all students have been scored
+                // Check if all judges except the last one have scored
                 if (currentStudentIndex == 7) {
-                    // Disable next button and enable submit button
+                    // Disable next button and enable submit and logout button
                     nextButton.setEnabled(false);
+                    logoutButton.setEnabled(true);
                     submitButton.setEnabled(true);
                 } else {
                     // Update student name and scores for the next student
                     studentNameTextView.setText(studentNames[currentStudentIndex]);
-                    score1EditText.setText("");
-                    score2EditText.setText("");
-                    score3EditText.setText("");
+                    // Disable next button and enable logout button
+                    nextButton.setEnabled(true);
+                    logoutButton.setEnabled(false);
                 }
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, login.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -115,7 +101,9 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < scores.length; i++) {
                     int sum = 0;
                     for (int j = 0; j < scores[i].length; j++) {
-                        sum += scores[i][j];
+                        for (int k = 0; k < scores[i][j].length; k++) {
+                            sum += scores[i][j][k];
+                        }
                     }
                     totalScores[i] = sum;
                 }
