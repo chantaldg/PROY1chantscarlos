@@ -31,7 +31,7 @@ public class ResultsActivity extends AppCompatActivity {
         thirdStudentNameTextView = findViewById(R.id.thirdStudentNameTextView);
         tieTextView = findViewById(R.id.tieTextView);
         studentGradeTextViews = findViewById(R.id.studentGradeTextViews);
-        studentNameTextViews = findViewById(R.id.studentNameTextViews);
+        /*studentNameTextViews = findViewById(R.id.studentNameTextViews);*/
 
 
 

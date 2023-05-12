@@ -1,132 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D3D3D3"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/studentNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="63dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="22dp"
-        android:text="ESTUDIANTE"
-        android:textColor="#F54291"
-        android:textSize="35sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/score1EditText"
-        app:layout_constraintEnd_toEndOf="@+id/nextButton"
-        app:layout_constraintStart_toStartOf="@+id/score1TextView" />
-
-    <TextView
-        android:id="@+id/score1TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="22dp"
-        android:text="CONTENIDO"
-        android:textColor="#F54291"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentNameTextView" />
-
-    <EditText
-        android:id="@+id/score3EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="17dp"
-        android:background="#FFF2F5"
-        android:ems="10"
-        android:hint="(1 -10)"
-        android:textColor="#F54291"
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="227dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginEnd="92dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score2EditText" />
-
-    <EditText
-        android:id="@+id/score2EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="9dp"
-        android:background="#FFF2F5"
-        android:ems="10"
-        android:hint="(1 - 10)"
-        android:textColor="#F54291"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score1EditText" />
-
-    <TextView
-        android:id="@+id/score3TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="LENGUAJE"
-        android:textColor="#F54291"
-        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score2TextView" />
+        app:layout_constraintTop_toBottomOf="@+id/studentNameTextView"
+        app:srcCompat="@drawable/whitebox" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="227dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:srcCompat="@drawable/whitebox" />
 
     <TextView
         android:id="@+id/score2TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-medium"
         android:text="PROYECCIÓN"
-        android:textColor="#F54291"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score1TextView" />
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView14"
+        app:layout_constraintStart_toStartOf="@+id/imageView14"
+        app:layout_constraintTop_toTopOf="@+id/imageView14" />
 
     <EditText
-        android:id="@+id/score1EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="111dp"
-        android:layout_marginEnd="9dp"
+        android:id="@+id/score2EditText"
+        android:layout_width="77dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="32dp"
         android:background="#FFF2F5"
         android:ems="10"
         android:hint="(1 - 10)"
         android:textColor="#F54291"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView14"
+        app:layout_constraintStart_toStartOf="@+id/imageView14"
+        app:layout_constraintTop_toBottomOf="@+id/score2TextView" />
 
-    <Button
-        android:id="@+id/nextButton"
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="227dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="91dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView14"
+        app:srcCompat="@drawable/whitebox" />
+
+    <TextView
+        android:id="@+id/studentNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="76dp"
-        android:text="SIGUIENTE ESTUDIANTE"
-        app:layout_constraintEnd_toEndOf="@+id/score3EditText"
-        app:layout_constraintTop_toBottomOf="@+id/score3EditText" />
+        android:layout_marginTop="30dp"
+        android:text="ESTUDIANTE"
+        android:textColor="#000000"
+        android:textSize="35sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <EditText
+        android:id="@+id/score1EditText"
+        android:layout_width="81dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="17dp"
+        android:background="#FFF2F5"
+        android:ems="10"
+        android:hint="(1 - 10)"
+        android:textColor="#F54291"
+        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintTop_toBottomOf="@+id/score1TextView" />
 
     <Button
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:enabled="false"
         android:text="OBTENER PUESTOS"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoutButton" />
+        app:layout_constraintStart_toEndOf="@+id/nextButton"
+        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
 
-    <Button
-        android:id="@+id/logoutButton"
+    <TextView
+        android:id="@+id/score3TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="136dp"
-        android:text="INICIAR SESION JUEZ"
-        android:enabled="false"
-        app:layout_constraintStart_toStartOf="@+id/nextButton"
-        app:layout_constraintTop_toBottomOf="@+id/nextButton" />
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="LENGUAJE"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView15"
+        app:layout_constraintStart_toStartOf="@+id/imageView15"
+        app:layout_constraintTop_toTopOf="@+id/imageView15" />
+
+    <TextView
+        android:id="@+id/score1TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="CONTENIDO"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13" />
+
+    <EditText
+        android:id="@+id/score3EditText"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="26dp"
+        android:background="#FFF2F5"
+        android:ems="10"
+        android:hint="(1 -10)"
+        android:textColor="#F54291"
+        app:layout_constraintEnd_toEndOf="@+id/imageView15"
+        app:layout_constraintStart_toStartOf="@+id/imageView15"
+        app:layout_constraintTop_toBottomOf="@+id/score3TextView" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="SIGUIENTE ESTUDIANTE"
+        app:layout_constraintEnd_toStartOf="@+id/submitButton"
+        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="450dp"
+        android:layout_height="325dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/boxline" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Vota"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Votación"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Vota introduciendo un valor del 1 al 10 en las casillas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="61dp"
+        android:layout_height="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/circle2" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.Arrays;
+import android.view.inputmethod.InputMethodManager;
+import android.view.WindowManager;
+import android.content.Context;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         studentNameTextView = findViewById(R.id.studentNameTextView);
         score1TextView = findViewById(R.id.score1TextView);
         score1EditText = findViewById(R.id.score1EditText);
@@ -35,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         score3TextView = findViewById(R.id.score3TextView);
         score3EditText = findViewById(R.id.score3EditText);
         nextButton = findViewById(R.id.nextButton);
-        logoutButton = findViewById(R.id.logoutButton);
         submitButton = findViewById(R.id.submitButton);
 
         // Initialize UI
@@ -67,26 +69,16 @@ public class MainActivity extends AppCompatActivity {
                 if (currentStudentIndex == 7) {
                     // Disable next button and enable submit and logout button
                     nextButton.setEnabled(false);
-                    logoutButton.setEnabled(true);
                     submitButton.setEnabled(true);
                 } else {
                     // Update student name for the next student
                     studentNameTextView.setText(studentNames[currentStudentIndex]);
                     nextButton.setEnabled(true);
-                    logoutButton.setEnabled(false);
                 }
-            }
-        });
+                score1EditText.getText().clear();
+                score2EditText.getText().clear();
+                score3EditText.getText().clear();
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an intent to start the login activity
-                Intent intent = new Intent(MainActivity.this, login.class);
-                startActivity(intent);
-
-                // Finish the MainActivity
-                finish();
             }
         });
         submitButton.setOnClickListener(new View.OnClickListener() {

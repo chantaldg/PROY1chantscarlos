@@ -22,7 +22,8 @@
         </activity>
 
         <activity android:name=".MainActivity"
-            android:label="EVALUACIONES" />
+            android:label="EVALUACIONES"
+            />
 
         <activity android:name=".ResultsActivity"
             android:label="RESULTADOS" />
