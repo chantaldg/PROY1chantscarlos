@@ -124,6 +124,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="136dp"
         android:text="INICIAR SESION JUEZ"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@+id/nextButton"
         app:layout_constraintTop_toBottomOf="@+id/nextButton" />
 

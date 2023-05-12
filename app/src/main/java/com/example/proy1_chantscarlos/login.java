@@ -1,4 +1,5 @@
 package com.example.proy1_chantscarlos;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,15 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.EditText;
-import java.util.Arrays;
 
 public class login extends AppCompatActivity {
 
-    // Array to store the usernames of the judges
-    private String[] usernames = {"judge1", "judge2", "judge3"};
-
-    // Array to store the passwords of the judges
-    private String[] passwords = {"password1", "password2", "password3"};
+    // Constants for the valid username and password
+    private static final String VALID_USERNAME = "juez1";
+    private static final String VALID_PASSWORD = "123";
 
     // UI elements
     private EditText userEditText;
@@ -55,10 +53,6 @@ public class login extends AppCompatActivity {
 
     // Check if the entered username and password are valid
     private boolean isValidUser(String enteredUsername, String enteredPassword) {
-        int index = Arrays.asList(usernames).indexOf(enteredUsername);
-        if (index != -1 && passwords[index].equals(enteredPassword)) {
-            return true;
-        }
-        return false;
+        return enteredUsername.equals(VALID_USERNAME) && enteredPassword.equals(VALID_PASSWORD);
     }
 }

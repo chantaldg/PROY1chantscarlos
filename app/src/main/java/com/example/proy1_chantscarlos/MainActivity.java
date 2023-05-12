@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Arrays;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,10 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private Button nextButton, submitButton, logoutButton;
     private int currentStudentIndex = 0;
     private String[] studentNames = {"CHANTAL DE GRACIA", "CARLOS CAMPBELL", "DIEGO BURGOS", "LUIS CARREYÓ", "MAIKEL DOMÍNGUEZ", "ROMAS LESCURE", "EIVAR MORALES"};
-    private String judgeName;
-    private int[][] numScoresPerStudent = new int[7][1];
     private int[][] scores = new int[7][3];
-    private boolean[][] scoresEntered = new boolean[7][1];
+    private int[] totalScores = new int[7];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.nextButton);
         logoutButton = findViewById(R.id.logoutButton);
         submitButton = findViewById(R.id.submitButton);
-
-        Intent intent = getIntent();
-        judgeName = intent.getStringExtra("judgeName");
 
         // Initialize UI
         studentNameTextView.setText(studentNames[0]);
@@ -60,24 +55,23 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Update scores for current student and judge
-                numScoresPerStudent[currentStudentIndex][0]++;
-                scores[currentStudentIndex][0] += score1 + score2 + score3;
-                scoresEntered[currentStudentIndex][0] = true;
+                // Update scores for current student
+                scores[currentStudentIndex][0] = score1;
+                scores[currentStudentIndex][1] = score2;
+                scores[currentStudentIndex][2] = score3;
 
                 // Move on to next student
                 currentStudentIndex++;
 
-                // Check if all judges except the last one have scored
+                // Check if all students have been scored
                 if (currentStudentIndex == 7) {
                     // Disable next button and enable submit and logout button
                     nextButton.setEnabled(false);
                     logoutButton.setEnabled(true);
                     submitButton.setEnabled(true);
                 } else {
-                    // Update student name and scores for the next student
+                    // Update student name for the next student
                     studentNameTextView.setText(studentNames[currentStudentIndex]);
-                    // Disable next button and enable logout button
                     nextButton.setEnabled(true);
                     logoutButton.setEnabled(false);
                 }
@@ -87,17 +81,18 @@ public class MainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Create an intent to start the login activity
                 Intent intent = new Intent(MainActivity.this, login.class);
                 startActivity(intent);
+
+                // Finish the MainActivity
                 finish();
             }
         });
-
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Calculate results
-                int[] totalScores = new int[scores.length];
                 for (int i = 0; i < scores.length; i++) {
                     int sum = 0;
                     for (int j = 0; j < scores[i].length; j++) {
@@ -105,43 +100,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                     totalScores[i] = sum;
                 }
-// Initialize variables to store the top three scores and their corresponding student names
-                int[] topThreeScores = new int[3];
-                String[] topThreeNames = new String[3];
 
-// Find the top three scores and their corresponding student names using selection sort
-                for (int i = 0; i < 3; i++) {
-                    int maxIndex = i;
-                    for (int j = i + 1; j < totalScores.length; j++) {
-                        if (totalScores[j] > totalScores[maxIndex]) {
-                            maxIndex = j;
-                        }
-                    }
-                    // Swap the maximum score with the score at the current index
-                    int tempScore = totalScores[i];
-                    totalScores[i] = totalScores[maxIndex];
-                    totalScores[maxIndex] = tempScore;
-                    // Swap the name of the student with the maximum score with the name of the student at the current index
-                    String tempName = studentNames[i];
-                    studentNames[i] = studentNames[maxIndex];
-                    studentNames[maxIndex] = tempName;
-                    // Store the top three scores and their corresponding student names
-                    topThreeScores[i] = totalScores[i];
-                    topThreeNames[i] = studentNames[i];
-                }
-
-// Create an intent to start the next activity and pass the top three grades and their names
+                // Create an intent to start the next activity and pass the scores and student names
                 Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
-                intent.putExtra("firstGrade", topThreeScores[0]);
-                intent.putExtra("secondGrade", topThreeScores[1]);
-                intent.putExtra("thirdGrade", topThreeScores[2]);
-                intent.putExtra("firstStudentName", topThreeNames[0]);
-                intent.putExtra("secondStudentName", topThreeNames[1]);
-                intent.putExtra("thirdStudentName", topThreeNames[2]);
+                intent.putExtra("scores", totalScores);
+                intent.putExtra("studentNames", studentNames);
 
-// Start the next activity
+                // Start the next activity
                 startActivity(intent);
-
-
             }
         });}}
