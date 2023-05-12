@@ -37,13 +37,13 @@ public class ResultsActivity extends AppCompatActivity {
 
         // Sort the grades in descending order
         int n = scores.length;
-        for (int i = 0; i < n-1; i++) {
-            for (int j = 0; j < n-i-1; j++) {
-                if (scores[j] < scores[j+1]) {
+        for (int i = 0; i < n-1; i++) { //i es el index del score actual en el array scores
+            for (int j = 0; j < n-i-1; j++) { //"j" es el índice del elemento actual del array "scores" en el bucle interno
+                if (scores[j] < scores[j+1]) { //comprueba que las calificaciones estén intercambiadas para estar descendentes
                     // Swap grades
-                    int tempGrade = scores[j];
+                    int tempGrade = scores[j]; //
                     scores[j] = scores[j+1];
-                    scores[j+1] = tempGrade;
+                    scores[j+1] = tempGrade; //tempGrade variable temporal pa la calificacion
                     // Swap student names
                     String tempName = studentNames[j];
                     studentNames[j] = studentNames[j+1];
@@ -54,15 +54,15 @@ public class ResultsActivity extends AppCompatActivity {
 
         // Check for ties
         boolean isTie = false;
-        String tiedPositions = "";
-        String tiedStudents = "";
-        for (int i = 0; i < n-1; i++) {
-            if (scores[i] == scores[i+1]) {
+        String tiedPositions = ""; //string vacio declarado para luego almacenar las posiciones
+        String tiedStudents = "";//string vacio declarado para luego almacenar los nombres
+        for (int i = 0; i < n-1; i++) { //pa recorrer scores, es n- porque hay empate hasta sexto lugar porque son solo 7 estudiantes
+            if (scores[i] == scores[i+1]) {//se verifica si la calificacion del estudiante es igual a la del siguiente
                 if (!isTie) {
                     isTie = true;
-                    tiedPositions = (i+1) + "°";
-                    tiedStudents = studentNames[i] + " y " + studentNames[i+1];
-                } else {
+                    tiedPositions = (i+1) + "°"; //se almacena el primer empate en tiedPositions
+                    tiedStudents = studentNames[i] + " y " + studentNames[i+1]; //same thing as before but for students
+                } else { //whe additional ties are detected tiedpositios y tiedstudents se van concatenando (appending)
                     tiedPositions += ", " + (i+1) + "°";
                     tiedStudents += " y " + studentNames[i+1];
                 }

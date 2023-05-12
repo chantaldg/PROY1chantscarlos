@@ -12,6 +12,8 @@ import android.widget.Toast;
 import android.view.inputmethod.InputMethodManager;
 import android.view.WindowManager;
 import android.content.Context;
+import android.text.TextUtils;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +48,21 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Check if any of the scores are empty
+                if (TextUtils.isEmpty(score1EditText.getText().toString())) {
+                    Toast.makeText(MainActivity.this, "INGRESE PUNTUACIÓN DE CONTENIDO", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(score2EditText.getText().toString())) {
+                    Toast.makeText(MainActivity.this, "INGRESE PUNTUACIÓN DE PROYECCIÓN", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(score3EditText.getText().toString())) {
+                    Toast.makeText(MainActivity.this, "INGRESE PUNTUACIÓN DE LENGUAJE", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 // Get scores entered for current student
                 int score1 = Integer.parseInt(score1EditText.getText().toString());
                 int score2 = Integer.parseInt(score2EditText.getText().toString());
@@ -75,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     studentNameTextView.setText(studentNames[currentStudentIndex]);
                     nextButton.setEnabled(true);
                 }
+                //BORRA LOS NUMEROS DE LOS EDIT TEXTS PARA EL SIGUIENTE ESTUDIANTE
                 score1EditText.getText().clear();
                 score2EditText.getText().clear();
                 score3EditText.getText().clear();
@@ -85,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Calculate results
-                for (int i = 0; i < scores.length; i++) {
-                    int sum = 0;
-                    for (int j = 0; j < scores[i].length; j++) {
-                        sum += scores[i][j];
+                for (int i = 0; i < scores.length; i++) { //la i itera a través de los 7 estudiantes
+                    int sum = 0; //se utiliza para calcular la suma de los puntajes del estudiante actual
+                    for (int j = 0; j < scores[i].length; j++) { // la j itera a través de los puntajes de un estudiante específico
+                        sum += scores[i][j]; //contiene las calificaciones de todos los estudiantes, donde i representa el índice del estudiante y j representa el índice de cada calificación de ese estudiante
                     }
-                    totalScores[i] = sum;
+                    totalScores[i] = sum; //asigna el valor de la suma de las puntuaciones del estudiante i a la posición i del array totalScores, contiene la suma total de las puntuaciones de cada estudiante
                 }
 
                 // Create an intent to start the next activity and pass the scores and student names
