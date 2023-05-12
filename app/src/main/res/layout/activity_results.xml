@@ -7,6 +7,17 @@
     android:background="@drawable/bgresults"
     android:stretchColumns="*">
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="61dp"
+            android:layout_height="27dp"
+            app:srcCompat="@drawable/num3" />
+    </TableRow>
+
     <TableRow>
 
         <TextView
